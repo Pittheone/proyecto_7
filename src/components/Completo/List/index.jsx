@@ -23,7 +23,7 @@ const CompletoList = () => {
                 return (
                     <div key={completo._id} className= "border flex flex-col">
                         <div className="bg-gray-50">
-                            <Link to={`/completos/${completo._id}`} state={{ completo }} >
+                            <Link to={`/completos/${completo.slug}`} state={{ completo }} >
                             <img
                             src={completo.image}
                             alt={completo.description}
@@ -34,7 +34,7 @@ const CompletoList = () => {
                         <div className="flex-1 p-4 space-y-2 flex flex-col">
                             <h3 className="text-xl font-bold text-gray-900">{completo.name}</h3>
                             <p className="text-gray-500 pb-8">{completo.description}</p>
-                            <Link to={`/completos/${completo._id}`} state={{ completo }} className="btn-product">
+                            <Link to={`/completos/${completo.slug}`} state={{ completo }} className="btn-product">
                             <button type="button" className="w-full">
                                 Ver Completo
                             </button>

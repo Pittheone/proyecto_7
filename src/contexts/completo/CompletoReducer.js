@@ -5,6 +5,11 @@ const CompletoReducer = (globalState, action) => {
                 ...globalState,
                 completos: action.payload,
             };
+            case "OBTENER_COMPLETO":
+                return {
+                    ...globalState,
+                    currentCompleto: action.payload,
+                }
         default:
             return globalState; //solo lo que está en base de datos
     }

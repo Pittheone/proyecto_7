@@ -10,6 +10,10 @@ import UserState from "./contexts/user/UserState";
 import AuthRoute from "./routes/Auth";
 import PrivateRoute from "./routes/Private";
 import Profile from "./components/Profile";
+import SucessPage from "./components/Sucess";
+import CancelPage from "./components/Cancel";
+import Checkout from "./components/Checkout";
+import About from "./components/About";
 
 const Router = () => {
   return (
@@ -29,9 +33,16 @@ const Router = () => {
               path="perfil"
               element={<PrivateRoute component={Profile}/>} 
               />
+              <Route
+              path="carrito"
+              element={<PrivateRoute component={Checkout}/>}
+              />
     
               <Route path="completos" element={<CompletoList />} /> 
-              <Route path="completos/:id" element={<SingleCompleto/>} />      
+              <Route path="completos/:slug" element={<SingleCompleto/>} />
+              <Route path='pago-exitoso' element={<SucessPage />} />
+              <Route path='pago-cancelado' element={<CancelPage />} />
+              <Route path="about" element={<About />} />
               {/* <Route path="/index" element={<Home />} />       */}
             </Route>
           </Routes>

@@ -5,7 +5,16 @@ import axiosClient from "../../config/axios";
 
 const CompletoState = (props) => {
   const initialState = {
-    completos: []
+    completos: [],
+    currentCompleto: {
+      _id: null,
+      idProd: '',
+      name: '',
+      img: '',
+      price: '',
+      description: '',
+      slug: '',
+    }
   };
 
   const [globalState, dispatch] = useReducer(CompletoReducer, initialState);
@@ -22,12 +31,22 @@ const CompletoState = (props) => {
       console.log(error);
     }
   };
+
+const setCurrentCompleto = (completoData) => {
+  dispatch({
+    type: " OBTENER_COMPLETO",
+    payload: completoData,
+  });
+}
+
 //return lo que va a mostrar/renderizar en pantalla
   return (
     <CompletoContext.Provider
       value={{
         completos: globalState.completos,
-        getCompletos
+        currentCompleto: globalState.currentCompletos,
+        getCompletos,
+        setCurrentCompleto
       }}
     >
       {props.children}

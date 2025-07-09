@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
-import UserContext from "../../contexts/user/UserContext";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import UserContext from "../../contexts/user/UserContext";
 
-const Login = () => {
+export default function Login() {
   const ctx = useContext(UserContext);
+
   const { loginUser } = ctx;
 
   const [logUser, setLogUser] = useState({
@@ -15,6 +16,7 @@ const Login = () => {
 
   const handleChange = (e) => {
     e.preventDefault();
+
     setLogUser({
       ...logUser,
       [e.target.name]: e.target.value,
@@ -23,10 +25,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const res = await loginUser(logUser);
+
     if (res) setErrorMsg(res);
     return;
   };
+
   return (
     <>
       <section className="flex flex-col justify-center py-8 mx-auto">
@@ -96,6 +101,4 @@ const Login = () => {
       </section>
     </>
   );
-};
-
-export default Login;
+}

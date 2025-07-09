@@ -1,12 +1,12 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout";
-import Home from "./components/Home";
-import CompletoState from "./contexts/completo/CompletoState";
+import { BrowserRouter, Route, Routes } from "react-router-dom"; //1
+import Layout from "./components/Layout"; //4
+import Home from "./components/Home"; //5 // import Home from "./components/Home/index"
+import CompletoState from "./contexts/completo/CompletoState"; //3
 import CompletoList from "./components/Completo/List";
 import SingleCompleto from "./components/Completo/Single";
 import Register from "./components/Auth/Register";
 import Login from "./components/Auth/Login";
-import UserState from "./contexts/user/UserState";
+import UserState from "./contexts/user/UserState"; //2
 import AuthRoute from "./routes/Auth";
 import PrivateRoute from "./routes/Private";
 import Profile from "./components/Profile";

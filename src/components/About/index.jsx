@@ -3,6 +3,7 @@ import stomachAcheImg from "../../components/imgsassets/stomach-ache.jpg";
 import manImg from "../../components/imgsassets/happy-man.jpg";
 import womanImg from "../../components/imgsassets/happy-woman.jpg";
 import womanTwoImg from "../../components/imgsassets/happy-woman-two.jpg";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
@@ -67,54 +68,63 @@ const AboutUs = () => {
         ★★★★★ 4.8/5 rating - 9,772 reviews
       </p>
       <h2 className="text-5xl sm:text-6xl font-bold italic bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-transparent bg-clip-text">
-        _Amado por miles_
+        Amado por miles
       </h2>
     </div>
 
-    {/* Tarjetas de Reviews */}
+    {/* Tarjetas con animación */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
       
-      {/* Review 1 */}
-      <div className="border border-gray-300 rounded-xl p-6 shadow-md flex flex-col items-center text-center">
-        <img
-          src={manImg}
-          alt="Usuario feliz"
-          className="w-24 h-24 rounded-full object-cover mb-4"
-        />
-        <p className="text-sm font-semibold mb-2">★★★★★ 5/5 rating</p>
-        <p className="text-gray-700 text-base mb-4">
-          “Desde que probé nuestros completos saludables, ya no me siento pesado ni con malestar después de comer. ¡Volví a disfrutar sin culpa!”
-        </p>
-        <p className="font-bold">JUAN</p>
-      </div>
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  whileHover={{ scale: 1.05 }}
+  transition={{ duration: 0.3, type: "spring", stiffness: 200 }}
+  viewport={{ once: true }}
+  className="border border-gray-300 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow flex flex-col items-center text-center bg-white"
+>
+  <img src={manImg} alt="Usuario feliz" className="w-24 h-24 rounded-full object-cover mb-4" />
+  <p className="text-sm font-semibold mb-2">★★★★★ 5/5 rating</p>
+  <p className="text-gray-700 text-base mb-4">
+    “Desde que probé nuestros completos saludables, ya no me siento pesado ni con malestar después de comer. ¡Volví a disfrutar sin culpa!”
+  </p>
+  <p className="font-bold">JUAN</p>
+</motion.div>
 
-      {/* Review 2 */}
-      <div className="border border-gray-300 rounded-xl p-6 shadow-md flex flex-col items-center text-center">
-        <img
-          src={womanImg}
-          alt="Usuaria feliz"
-          className="w-24 h-24 rounded-full object-cover mb-4"
-        />
-        <p className="text-sm font-semibold mb-2">★★★★★ 5/5 rating</p>
-        <p className="text-gray-700 text-base mb-4">
-          “Nunca pensé que un completo pudiera ser saludable y delicioso a la vez. ¡Una experiencia que repito semana a semana!”
-        </p>
-        <p className="font-bold">CAMILA</p>
-      </div>
+{/* Review 2 */}
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  whileHover={{ scale: 1.05 }}
+  transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.2 }}
+  viewport={{ once: true }}
+  className="border border-gray-300 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow flex flex-col items-center text-center bg-white"
+>
+  <img src={womanImg} alt="Usuaria feliz" className="w-24 h-24 rounded-full object-cover mb-4" />
+  <p className="text-sm font-semibold mb-2">★★★★★ 5/5 rating</p>
+  <p className="text-gray-700 text-base mb-4">
+    “Nunca pensé que un completo pudiera ser saludable y delicioso a la vez. ¡Una experiencia que repito semana a semana!”
+  </p>
+  <p className="font-bold">CAMILA</p>
+</motion.div>
 
-      {/* Review 3 */}
-      <div className="border border-gray-300 rounded-xl p-6 shadow-md flex flex-col items-center text-center">
-        <img
-          src={womanTwoImg}
-          alt="Usuaria feliz"
-          className="w-24 h-24 rounded-full object-cover mb-4"
-        />
-        <p className="text-sm font-semibold mb-2">★★★★★ 5/5 rating</p>
-        <p className="text-gray-700 text-base mb-4">
-          “Mi digestión ha mejorado desde que dejé los completos clásicos y probé esta alternativa saludable. ¡Sabor increíble y sin culpa!”
-        </p>
-        <p className="font-bold">FERNANDA</p>
-      </div>
+{/* Review 3 */}
+<motion.div
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  whileHover={{ scale: 1.05 }}
+  transition={{ duration: 0.3, type: "spring", stiffness: 200, delay: 0.4 }}
+  viewport={{ once: true }}
+  className="border border-gray-300 rounded-xl p-6 shadow-md hover:shadow-xl transition-shadow flex flex-col items-center text-center bg-white"
+>
+  <img src={womanTwoImg} alt="Usuaria feliz" className="w-24 h-24 rounded-full object-cover mb-4" />
+  <p className="text-sm font-semibold mb-2">★★★★★ 5/5 rating</p>
+  <p className="text-gray-700 text-base mb-4">
+    “Mi digestión ha mejorado desde que dejé los completos clásicos y probé esta alternativa saludable. ¡Sabor increíble y sin culpa!”
+  </p>
+  <p className="font-bold">FERNANDA</p>
+</motion.div>
+
     </div>
   </div>
 </section>

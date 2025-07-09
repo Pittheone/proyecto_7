@@ -8,24 +8,21 @@ export default function Profile() {
 
   const { updateUser } = userCtx;
 
-  const { username, email, country, address, zipcode } =
+  const { username, email, country} =
     userCtx.currentUser;
 
   const [userForm, setUserForm] = useState({
     username: "",
     country: "",
     address: "",
-    zipcode: "",
   });
-
+//armar 
   useEffect(() => {
     const updateData = () => {
       return setUserForm({
         ...userForm,
         username,
         country,
-        address,
-        zipcode,
       });
     };
 

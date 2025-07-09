@@ -15,7 +15,7 @@ const UserState = (props) => {
     sessionURL: null,
     globalLoading: false,
   };
-
+//función que obtenga datos por ID
   const [globalState, dispatch] = useReducer(userReducer, initialState);
 
   const registerUser = async (form) => {

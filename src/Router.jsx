@@ -28,11 +28,11 @@ const Router = () => {
               <Route path="registro" element={<Register />} />
               <Route 
               path="iniciar-sesion" 
-              element={<AuthRoute component={Login} />}
+              element={<Login />}
               />
               <Route
               path="perfil"
-              element={<PrivateRoute component={Profile}/>} 
+              element={<Profile/>} 
               />
               <Route
               path="carrito"

@@ -10,7 +10,7 @@ export default function Header(){
     // currentUser,
     cart,
     authStatus,
-    verifyingUser,
+    // verifyingUser,
     logoutUser,
     getCart,
     setLoading,
@@ -20,7 +20,7 @@ export default function Header(){
 
   useEffect(() => {
     setLoading(true);
-    verifyingUser(),
+    // verifyingUser(),
     getCart();
     setLoading(false);
   }, [] );

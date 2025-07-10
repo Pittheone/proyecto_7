@@ -22,7 +22,7 @@ const CompletoState = (props) => {
   const getCompletos = async () => {
     try {
       const res = await axiosClient.get("/completo/readall"); // http://localhost:3000/api/guitars
-      console.log(res)
+      console.log("Esto es lo que viene de la api", res)
       dispatch({
         type: "OBTENER_COMPLETOS",
         payload: res.data,

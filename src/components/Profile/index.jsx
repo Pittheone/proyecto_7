@@ -8,12 +8,11 @@ export default function Profile() {
 
   const { updateUser } = userCtx;
 
-  const { username, email, country} =
+  const { username, email, address } =
     userCtx.currentUser;
 
   const [userForm, setUserForm] = useState({
     username: "",
-    country: "",
     address: "",
   });
 //armar 
@@ -22,7 +21,7 @@ export default function Profile() {
       return setUserForm({
         ...userForm,
         username,
-        country,
+        address,
       });
     };
 
@@ -89,33 +88,7 @@ export default function Profile() {
                       />
                     </div>
 
-                    <div className="col-span-4 sm:col-span-2">
-                      <label className="form-label">Tu país</label>
-                      <input
-                        type="text"
-                        name="country"
-                        value={userForm.country}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
-                        className="form-input"
-                      />
-                    </div>
 
-                    <div className="col-span-4 sm:col-span-1">
-                      <label className="form-label">
-                        <span>Código postal</span>
-                      </label>
-                      <input
-                        type="number"
-                        name="zipcode"
-                        value={userForm.zipcode}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
-                        className="form-input"
-                      />
-                    </div>
 
                     <div className="col-span-4 sm:col-span-3">
                       <label className="form-label">Dirección</label>

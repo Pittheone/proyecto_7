@@ -85,7 +85,7 @@ const UserState = (props) => {
   const editCart = async (data) => {
     try {
       const res = await axiosClient.put(
-        "/carts/edit-cart",
+        "/carts/edit-cart", 
         { products: data },
         { withCredentials: true }
       );
@@ -102,6 +102,7 @@ const UserState = (props) => {
       const res = await axiosClient.get("/carts/get-cart", {
         withCredentials: true,
       });
+        console.log("esto es get cart", res)
       dispatch({
         type: "GET_CART",
         payload: res.data.cart.products,

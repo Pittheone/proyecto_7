@@ -1,5 +1,5 @@
 import { Link, Navigate, useLocation } from "react-router-dom";
-import { formatCLP } from "../../../utils/formatCLP";
+import { formatCLP } from "../../../Utils/formatCLP";
 import UserContext  from "../../../contexts/user/UserContext";
 import { useContext, useEffect, useState } from "react"; //copy pasted ojo.
 import CompletoContext from "../../../contexts/completo/CompletoContext";
@@ -17,7 +17,7 @@ const SingleCompleto = () => {
     useEffect(() => {
     if (!completo) {
       // Si el usuario recarga la página y no hay data, redirigir
-      Navigate("/completos")
+      Navigate("/completos") //puede ser lo que tira error ???
       return;
     }
 

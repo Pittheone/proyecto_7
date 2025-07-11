@@ -25,7 +25,7 @@ const CompletoList = () => {
                         <div className="bg-gray-50">
                             <Link to={`/completos/${completo.slug}`} state={{ completo }} >
                             <img
-                            src={completo.image}
+                            src={completo.img}
                             alt={completo.description}
                             className="w-full h-96 object-center object-cover" //h96 define altura
                             />

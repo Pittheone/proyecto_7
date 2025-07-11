@@ -10,8 +10,8 @@ import UserState from "./contexts/user/UserState"; //2
 import AuthRoute from "./routes/Auth"; //16
 import PrivateRoute from "./routes/Private"; //15
 import Profile from "./components/Profile/index"; // 10 //import Profile from "./components/Profile/index"
-import SucessPage from "./components/Sucess"; //12 //import SuccessPage from "./components/Success/index";
-import CancelPage from "./components/Cancel"; //13
+import SucessPage from "./components/Sucess/index"; //12 //import SuccessPage from "./components/Success/index";
+import CancelPage from "./components/Cancel/index"; //13
 import Checkout from "./components/Checkout/index"; //11
 import About from "./components/About";
 
@@ -36,7 +36,7 @@ const Router = () => {
               />
               <Route
               path="carrito"
-              element={<PrivateRoute component={Checkout}/>}
+              element={<Checkout/>}
               />
     
               <Route path="completos" element={<CompletoList />} /> 

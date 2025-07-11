@@ -2,7 +2,7 @@
 
 const SucessPage = () => {
   return (
-    <div>SucessPage</div>
+    <div>Pago fue exitoso</div>
   )
 }
 

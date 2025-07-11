@@ -1,9 +1,49 @@
+import {  Component, useContext, useEffect, useState } from "react";
+import UserContext from "../contexts/user/UserContext"
+import { Navigate} from "react-router-dom";
 
 
-const PrivateRoute = () => {
+
+export default function PrivateRoute() {
+  const userCtx = useContext(UserContext);
+
+  const { authStatus, verifyingUser } = userCtx;
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const verifyToken = async () => {
+      return await verifyingUser();
+    };
+
+    verifyToken();
+    setLoading(false);
+  }, [authStatus]);
+
+  if (loading) return null
+
   return (
-    <div>PrivateRoute</div>
+    <>
+    {authStatus ? <Component /> : <Navigate replace to="/iniciar-sesion" />}
+    </>
   )
 }
 
-export default PrivateRoute
+
+
+
+
+
+
+
+
+
+
+
+// const PrivateRoute = () => {
+//   return (
+//     <div>PrivateRoute</div>
+//   )
+// }
+
+// export default PrivateRoute

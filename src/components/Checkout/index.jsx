@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../../contexts/user/UserContext";
-import { formatCLP } from "../../utils/formatCLP";
+import { formatCLP } from "../../Utils/formatCLP";
 
 export default function Checkout() {
   const userCtx = useContext(UserContext);

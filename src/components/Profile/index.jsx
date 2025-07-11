@@ -6,27 +6,40 @@ export default function Profile() {
 
   const userCtx = useContext(UserContext);
 
+
   const { updateUser } = userCtx;
 
-  const { username, email, address } =
-    userCtx.currentUser;
+
+
+  const { name, email, address } =
+    userCtx
+    console.log(name, email, address);
 
   const [userForm, setUserForm] = useState({
     username: "",
     address: "",
   });
 //armar 
-  useEffect(() => {
-    const updateData = () => {
-      return setUserForm({
-        ...userForm,
-        username,
-        address,
-      });
-    };
+  // useEffect(() => {
+  //   const updateData = () => {
+  //     return setUserForm({
+  //       ...userForm,
+  //       name,
+  //       address,
+  //     });
+  //   };
 
-    updateData();
-  }, []);
+  //   updateData();
+  // }, []);
+
+useEffect(() => {
+  if (userCtx.currentUser) {
+    setUserForm({
+      username: userCtx?.currentUser?.name || "", // o "username" si ese es el campo correcto
+      address: userCtx?.currentUser?.address || "",
+    });
+  }
+}, [userCtx.currentUser]);
 
   const handleChange = async (event) => {
     setUserForm({
@@ -66,7 +79,7 @@ export default function Profile() {
                       <input
                         type="text"
                         name="username"
-                        value={userForm.username}
+                        value={userForm?.username} //
                         onChange={(e) => {
                           handleChange(e);
                         }}
@@ -95,7 +108,7 @@ export default function Profile() {
                       <input
                         type="text"
                         name="address"
-                        value={userForm.address}
+                        value={userForm?.address} //
                         onChange={(e) => {
                           handleChange(e);
                         }}

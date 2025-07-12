@@ -66,8 +66,7 @@ const SingleCompleto = () => {
   return (
     <main className="min-h-screen bg-[#fff7f2] text-gray-800 px-6 py-16">
       <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
-
-        {/* Caja con estilo "dragadado" */}
+        {/* Card de información */}
         <section className="relative w-full max-w-xl rounded-[2rem] overflow-hidden bg-orange-100 shadow-xl p-6 space-y-6">
           <h1 className="text-5xl font-extrabold tracking-tight text-orange-600">
             {name}
@@ -75,21 +74,22 @@ const SingleCompleto = () => {
 
           <div className="w-16 h-1 bg-orange-500 rounded mt-1 mb-2"></div>
 
-          <p className="text-lg text-gray-600 italic leading-relaxed">
+          <p className="text-lg text-gray-600 italic leading-relaxed text-center">
             {description}
           </p>
 
-          <p className="text-2xl font-semibold text-gray-800">
+          <p className="text-2xl font-semibold text-gray-800 text-center">
             <span className="text-base font-normal text-gray-500 mr-2">Precio:</span>
             {formatCLP(price)}
           </p>
 
           {authStatus && (
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
+            <form onSubmit={handleSubmit} className="space-y-4 text-center">
+              <div className="flex flex-col items-center">
                 <label className="block mb-2 font-medium text-gray-700">
                   Cantidad
                 </label>
+
                 <select
                   className="w-32 border border-orange-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
                   value={quantity}
@@ -105,13 +105,25 @@ const SingleCompleto = () => {
 
               <button
                 type="submit"
-                className={`w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full font-semibold transition duration-300 ${quantity === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full font-semibold transition duration-300 ${
+                  quantity === 0 ? "opacity-50 cursor-not-allowed" : ""
+                }`}
                 disabled={quantity === 0}
               >
                 {cart.length ? "Modificar carrito" : "Agregar al carrito"}
               </button>
             </form>
           )}
+
+          {/* Botón volver al menú */}
+          <div className="mt-6">
+            <Link
+              to="/completos"
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full font-semibold transition duration-300 text-center block"
+            >
+              Volver al menú
+            </Link>
+          </div>
 
           {!authStatus && (
             <Link to="/registro">

@@ -5,16 +5,14 @@ import { formatCLP } from "../../Utils/formatCLP";
 
 export default function Checkout() {
   const userCtx = useContext(UserContext);
-
   const { cart, sessionURL, getCheckoutSession, editCart } = userCtx;
-
   const [total, setTotal] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     getCheckoutSession();
   };
-//checkout da respuesta
+
   useEffect(() => {
     if (sessionURL) window.location.href = sessionURL;
   }, [sessionURL]);
@@ -22,30 +20,19 @@ export default function Checkout() {
   useEffect(() => {
     const reduceTotalFromOrder = () => {
       return cart.reduce((acc, cv) => {
-        const updatedQuantity = cv.price * cv.quantity;
-
-        return updatedQuantity + acc;
+        return acc + cv.price * cv.quantity;
       }, 0);
     };
 
-    const getOrderDetails = () => {
-      const total = reduceTotalFromOrder();
-
-      setTotal(total);
-    };
-
-    getOrderDetails();
+    setTotal(reduceTotalFromOrder());
   }, [cart]);
 
   const handleChange = (e) => {
-    const updatedCart = cart.map((elt) => {
-      return elt.priceID === e.target.name
-        ? {
-            ...elt,
-            quantity: parseInt(e.target.value),
-          }
-        : elt;
-    });
+    const updatedCart = cart.map((elt) =>
+      elt.priceID === e.target.name
+        ? { ...elt, quantity: parseInt(e.target.value) }
+        : elt
+    );
 
     editCart(updatedCart);
   };
@@ -53,107 +40,75 @@ export default function Checkout() {
   const handleRemove = (e, currentPriceID) => {
     e.preventDefault();
 
-    const updatedCart = cart.filter((elt) => {
-      return elt.priceID !== currentPriceID;
-    });
-
+    const updatedCart = cart.filter((elt) => elt.priceID !== currentPriceID);
     editCart(updatedCart);
   };
 
   return (
-    <>
-      <div className="max-w-4xl mx-4 py-8 md:mx-auto">
-        <h1 className="text-3xl font-bold mt-8">Carrito</h1>
+    <main className="min-h-screen bg-[#fff7f2] text-gray-800 px-6 py-16">
+      <div className="max-w-4xl mx-auto bg-orange-100 rounded-[2rem] shadow-xl p-8 space-y-10">
+        <h1 className="text-4xl font-extrabold text-orange-600 text-center">Tu carrito</h1>
 
-        <form className="mt-12">
-          <ul>
-            {cart.map((e) => {
-              return (
-                <li key={e._id} className="flex py-10">
-                  <figure>
-                    <img
-                      src={e.img}
-                      alt={e.name}
-                      className="checkout-figure-img"
-                    />
-                  </figure>
+        <form>
+          <ul className="space-y-8">
+            {cart.map((e) => (
+              <li key={e._id} className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
+                <figure className="w-32 h-32 overflow-hidden rounded-xl shadow-md">
+                  <img
+                    src={e.img}
+                    alt={e.name}
+                    className="w-full h-full object-cover"
+                  />
+                </figure>
 
-                  <div className="relative ml-4 flex-1 flex flex-col justify-between sm:ml-6">
-                    <div className="flex justify-between sm:grid sm:grid-cols-2">
-                      <div className="pr-6">
-                        <h3 className="text-sm">{e.name}</h3>
-                      </div>
-
-                      <p className="text-sm font-medium text-gray-900 text-right">
-                        {formatCLP(e.price * e.quantity)}
-                      </p>
-                    </div>
-
-                    <div className="mt-4 flex items-center sm:block sm:absolute sm:top-0 sm:left-1/2 sm:mt-0">
-                      <select
-                        id="quantity-0"
-                        value={e.quantity}
-                        name={e.priceID}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
-                        className="block border border-gray-300 px-2 py-1 text-sm"
-                      >
-                        {Array(5)
-                          .fill(null)
-                          .map((_, i) => {
-                            const initial = i + 1;
-
-                            return initial === e.quantity ? (
-                              <option key={initial} value={initial}>
-                                {initial}
-                              </option>
-                            ) : (
-                              <option key={initial} value={initial}>
-                                {initial}
-                              </option>
-                            );
-                          })}
-                      </select>
-
-                      <button
-                        type="button"
-                        onClick={(evt) => {
-                          handleRemove(evt, e.priceID);
-                        }}
-                        className="text-sm font-sm ml-4 md:ml-0 mt-2 text-brand-purple"
-                      >
-                        <span>Eliminar</span>
-                      </button>
-                    </div>
+                <div className="flex-1 space-y-2">
+                  <div className="flex justify-between">
+                    <h3 className="text-lg font-semibold">{e.name}</h3>
+                    <p className="text-lg font-bold text-gray-800">{formatCLP(e.price * e.quantity)}</p>
                   </div>
-                </li>
-              );
-            })}
+
+                  <div className="flex items-center gap-4">
+                    <select
+                      value={e.quantity}
+                      name={e.priceID}
+                      onChange={handleChange}
+                      className="border border-orange-300 rounded-md px-3 py-1 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                    >
+                      {[1, 2, 3, 4, 5].map((num) => (
+                        <option key={num} value={num}>{num}</option>
+                      ))}
+                    </select>
+
+                    <button
+                      type="button"
+                      onClick={(evt) => handleRemove(evt, e.priceID)}
+                      className="text-sm text-orange-600 hover:underline"
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </div>
+              </li>
+            ))}
           </ul>
 
-          <div className="bg-gray-100 px-4 py-6 sm:p-6 lg:p-8">
-            <div>
-              <dl className="-my-4 text-sm ">
-                <div className="py-4 flex items-center justify-between">
-                  <dt className="font-bold">Total</dt>
-                  <dd className="">{formatCLP(total)}</dd>
-                </div>
-              </dl>
+          <div className="bg-white rounded-xl shadow-md mt-12 p-6">
+            <div className="flex items-center justify-between text-lg font-semibold">
+              <span>Total:</span>
+              <span>{formatCLP(total)}</span>
             </div>
           </div>
-          <div className="mt-10">
+
+          <div className="mt-10 text-center">
             <button
-              onClick={(e) => {
-                handleSubmit(e);
-              }}
-              className="form-button"
+              onClick={handleSubmit}
+              className="inline-block bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-semibold transition duration-300"
             >
               Procesar pago
             </button>
           </div>
         </form>
       </div>
-    </>
+    </main>
   );
 }

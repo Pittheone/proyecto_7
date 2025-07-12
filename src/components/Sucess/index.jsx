@@ -1,9 +1,7 @@
-
-
-const SucessPage = () => {
+const SuccessPage = () => {
   return (
-    <div>Pago fue exitoso</div>
+    <div>Tu pago fue realizado con exito</div>
   )
 }
 
-export default SucessPage
+export default SuccessPage

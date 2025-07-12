@@ -1,8 +1,8 @@
 
-const CancelPage = () => {
+const cancelPage = () => {
   return (
-    <div>Lo sentimos, tu pago no pudo ser realizado</div>
+    <div>Tu pago fue realizado con exito</div>
   )
 }
 
-export default CancelPage
+export default cancelPage

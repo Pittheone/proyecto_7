@@ -14,7 +14,7 @@ export default function Checkout() {
     e.preventDefault();
     getCheckoutSession();
   };
-
+//checkout da respuesta
   useEffect(() => {
     if (sessionURL) window.location.href = sessionURL;
   }, [sessionURL]);

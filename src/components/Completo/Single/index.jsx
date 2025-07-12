@@ -1,23 +1,23 @@
-import { Link, Navigate, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatCLP } from "../../../Utils/formatCLP";
-import UserContext  from "../../../contexts/user/UserContext";
-import { useContext, useEffect, useState } from "react"; //copy pasted ojo.
+import UserContext from "../../../contexts/user/UserContext";
+import { useContext, useEffect, useState } from "react";
 import CompletoContext from "../../../contexts/completo/CompletoContext";
 
 const SingleCompleto = () => {
   const [quantity, setQuantity] = useState(1);
   const location = useLocation();
-  const { completo } = location?.state; // Por qué tira error????
+  const navigate = useNavigate();
+  const { completo } = location?.state || {};
 
   const userCtx = useContext(UserContext);
   const { authStatus, cart, editCart, getCart } = userCtx;
 
   const { setCurrentCompleto } = useContext(CompletoContext);
 
-    useEffect(() => {
+  useEffect(() => {
     if (!completo) {
-      // Si el usuario recarga la página y no hay data, redirigir
-      Navigate("/completos") //puede ser lo que tira error ???
+      navigate("/completos");
       return;
     }
 
@@ -25,11 +25,11 @@ const SingleCompleto = () => {
     getCart();
   }, []);
 
-    const handleChange = (e) => {
+  const handleChange = (e) => {
     setQuantity(Number(e.target.value));
   };
 
-    const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (quantity === 0) return;
@@ -43,60 +43,69 @@ const SingleCompleto = () => {
       slug: completo.slug,
     };
 
-    const existingItemIndex = cart.findIndex(
-      (el) => el.priceID === item.priceID
-    );
+    const existingItemIndex = cart.findIndex((el) => el.priceID === item.priceID);
 
     let updatedCart;
 
     if (existingItemIndex !== -1) {
-      // Si ya existe, actualiza la cantidad
       updatedCart = cart.map((el, i) =>
         i === existingItemIndex ? { ...el, quantity: item.quantity } : el
       );
     } else {
-      // Si no existe, agrega el nuevo ítem
       updatedCart = [...cart, item];
     }
 
     await editCart(updatedCart);
   };
 
-    if (!completo) return null;
+  if (!completo) return null;
+
   const { name, description, img, price } = completo;
   const quantityOptions = [0, 1, 2, 3, 4, 5];
-   return (
-    <main className="max-w-5xl mx-auto pt-16 pb-24 px-6">
-      <div className="grid lg:grid-cols-2 gap-12">
-        {/* Info */}
-        <section>
-          <h1 className="text-4xl font-bold">{name}</h1>
-          <p className="text-gray-600 mt-4">{description}</p>
-          <p className="mt-4 text-xl font-semibold">
-            Precio: {formatCLP(price)}
+
+  return (
+    <main className="min-h-screen bg-[#fff7f2] text-gray-800 px-6 py-16">
+      <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
+
+        {/* Caja con estilo "dragadado" */}
+        <section className="relative w-full max-w-xl rounded-[2rem] overflow-hidden bg-orange-100 shadow-xl p-6 space-y-6">
+          <h1 className="text-5xl font-extrabold tracking-tight text-orange-600">
+            {name}
+          </h1>
+
+          <div className="w-16 h-1 bg-orange-500 rounded mt-1 mb-2"></div>
+
+          <p className="text-lg text-gray-600 italic leading-relaxed">
+            {description}
           </p>
 
-          {/* Select cantidad */}
+          <p className="text-2xl font-semibold text-gray-800">
+            <span className="text-base font-normal text-gray-500 mr-2">Precio:</span>
+            {formatCLP(price)}
+          </p>
+
           {authStatus && (
-            <form onSubmit={handleSubmit} className="mt-8">
-              <label className="block mb-2 font-medium text-gray-700">
-                Cantidad
-              </label>
-              <select
-                className="w-32 border border-gray-300 rounded-md p-2"
-                value={quantity}
-                onChange={handleChange}
-              >
-                {quantityOptions.map((q) => (
-                  <option key={q} value={q}>
-                    {q}
-                  </option>
-                ))}
-              </select>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block mb-2 font-medium text-gray-700">
+                  Cantidad
+                </label>
+                <select
+                  className="w-32 border border-orange-300 rounded-md p-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                  value={quantity}
+                  onChange={handleChange}
+                >
+                  {quantityOptions.map((q) => (
+                    <option key={q} value={q}>
+                      {q}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               <button
                 type="submit"
-                className="btn-product mt-6"
+                className={`w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full font-semibold transition duration-300 ${quantity === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
                 disabled={quantity === 0}
               >
                 {cart.length ? "Modificar carrito" : "Agregar al carrito"}
@@ -106,7 +115,7 @@ const SingleCompleto = () => {
 
           {!authStatus && (
             <Link to="/registro">
-              <button className="btn-product mt-6">
+              <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-full font-semibold transition duration-300 mt-6">
                 Regístrate para comprar
               </button>
             </Link>
@@ -118,40 +127,12 @@ const SingleCompleto = () => {
           <img
             src={img}
             alt={description}
-            className="w-full h-auto object-cover rounded-lg shadow-md"
+            className="w-full h-auto object-cover rounded-2xl shadow-lg"
           />
         </figure>
       </div>
     </main>
   );
-}
+};
 
-// const SingleCompleto = () => {
-//     const location = useLocation();
-//     const { completo } = location?.state;
-//   return (
-//     <>
-//     <main className="max-w-7xl mx-auto pt-16 pb-24 px-8 lg:grid lg:grid-cols-2 lg:gap-x-16">
-//         <section>
-//             <h1 className="text-4xl font-bold">{completo.name}</h1>
-//             <div className="mt-4">
-//                 <p className="text-gray-500">{completo.description}</p>
-//             </div>
-//             <div className="mt-4">
-//                 <h1 className="text-3x1">{new Intl.NumberFormat('es-CL', {style: 'currency', currency: 'CLP'}).format(completo.price)}</h1>
-//                 <figure className="mt-8 col-start-2 row-span-2">
-//                     <img 
-//                     src={completo.img}
-//                     alt={completo.description}
-//                     className="w-full object-center object-cover"
-//                     />
-//                 </figure>
-//             </div>
-//         </section>
-
-//     </main>
-//     </>
-//   )
-// }
-
-export default SingleCompleto
+export default SingleCompleto;

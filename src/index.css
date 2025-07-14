@@ -2,13 +2,7 @@
 
 
 @layer components {
-    .btn-product {
-        @apply px-8 py-4 text-center font-medium text-white bg-black w-full;
-    }
 
-    .btn-nav {
-        @apply bg-[#E3001B] text-white font-bold py-3 px-6 rounded-full shadow-md hover:bg-[#c60018] transition;
-    }
 
     .form-label {
         @apply block text-sm;

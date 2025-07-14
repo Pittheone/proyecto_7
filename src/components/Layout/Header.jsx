@@ -54,14 +54,14 @@ export default function Header(){
           </li>
         </ul>
 
-                <section className="flex items-center justify-end">
+                <section className="gap-2 flex items-center justify-end">
           {authStatus ? (
             <>
-              <Link to="/perfil" className="btn-nav">
+              <Link to="/perfil" className="font-medium">
                 Perfil
               </Link>
 
-              <Link to="/" className="btn-nav" onClick={logoutUser}>
+              <Link to="/" className="font-medium" onClick={logoutUser}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"

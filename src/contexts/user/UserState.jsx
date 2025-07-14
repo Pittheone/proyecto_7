@@ -1,4 +1,4 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import axiosClient from "../../config/axios";
 import UserContext from "../user/UserContext";
 import userReducer from "./UserRedurcer"; //no debería ser como el de arriba?
@@ -15,6 +15,8 @@ const UserState = (props) => {
     sessionURL: null,
     globalLoading: false,
   };
+
+
 //función que obtenga datos por ID
   const [globalState, dispatch] = useReducer(userReducer, initialState);
 
@@ -81,6 +83,21 @@ const UserState = (props) => {
       console.log("Error cerrando sesion", error);
     }
   };
+
+  const getUserByID = async () => {
+    try {
+      const response = await fetch("/users/id", {
+        method: "GET",
+        credentials: "include",
+      } )
+      const data = await response.json()
+      return data
+
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
 
   const editCart = async (data) => {
     try {
@@ -150,7 +167,8 @@ type: "CHANGE_STATUS_LOADING",
         editCart,
         getCart,
         getCheckoutSession,
-        setLoading
+        setLoading,
+        // getUserByID
       }}
     >
       {props.children}

@@ -1,47 +1,27 @@
 import { useState, useContext, useEffect } from "react";
-
 import UserContext from "../../contexts/user/UserContext";
 
 export default function Profile() {
-
   const userCtx = useContext(UserContext);
-
-
-  const { updateUser } = userCtx;
-
-
-
-  const { name, email, address } =
-    userCtx
-    console.log(name, email, address);
+  const { updateUser, currentUser } = userCtx;
 
   const [userForm, setUserForm] = useState({
     username: "",
     address: "",
+    email: ""
   });
-//armar 
-  // useEffect(() => {
-  //   const updateData = () => {
-  //     return setUserForm({
-  //       ...userForm,
-  //       name,
-  //       address,
-  //     });
-  //   };
 
-  //   updateData();
-  // }, []);
+  useEffect(() => {
+    if (currentUser) {
+      setUserForm({
+        username: currentUser.name || "",
+        address: currentUser.address || "",
+        email: currentUser.email || ""
+      });
+    }
+  }, [currentUser]);
 
-useEffect(() => {
-  if (userCtx.currentUser) {
-    setUserForm({
-      username: userCtx?.currentUser?.name || "", // o "username" si ese es el campo correcto
-      address: userCtx?.currentUser?.address || "",
-    });
-  }
-}, [userCtx.currentUser]);
-
-  const handleChange = async (event) => {
+  const handleChange = (event) => {
     setUserForm({
       ...userForm,
       [event.target.name]: event.target.value,
@@ -50,83 +30,75 @@ useEffect(() => {
 
   const sendData = async (event) => {
     event.preventDefault();
-
     await updateUser(userForm);
   };
 
   return (
-    <>
-      <div className="mx-auto py-4 px-8">
-        <div className="space-y-16 ">
-          <section>
-            <form
-              onSubmit={(e) => {
-                sendData(e);
-              }}
-            >
-              <div className="">
-                <div className="px-4">
-                  <div>
-                    <h2 className="text-3xl font-bold mt-8">Tu perfil</h2>
-                    <p className="mt-2 mb-8 text-sm">
-                      Aquí va informacion importante sobre tu cuenta.
-                    </p>
-                  </div>
+    <main className="min-h-screen bg-[#fff7f2] text-gray-800 px-6 py-16">
+      <div className="max-w-4xl mx-auto space-y-12">
+        <section className="bg-white p-8 rounded-2xl shadow-lg space-y-6">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold italic text-orange-600">
+              Tu perfil
+            </h2>
+            <p className="text-gray-600 mt-2">
+              ¿Quieres modificar información importante de tu cuenta?
+            </p>
+          </div>
 
-                  <div className="mt-6 grid grid-cols-4 gap-6">
-                    <div className="col-span-4 sm:col-span-2">
-                      <label className="form-label">Tu nombre de usuario</label>
-                      <input
-                        type="text"
-                        name="username"
-                        value={userForm?.username} //
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
-                        className="form-input"
-                      />
-                    </div>
-
-                    <div className="col-span-4 sm:col-span-2">
-                      <label className="form-label">Tu email</label>
-                      <input
-                        disabled
-                        type="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
-                        className="form-input"
-                      />
-                    </div>
-
-
-
-                    <div className="col-span-4 sm:col-span-3">
-                      <label className="form-label">Dirección</label>
-                      <input
-                        type="text"
-                        name="address"
-                        value={userForm?.address} //
-                        onChange={(e) => {
-                          handleChange(e);
-                        }}
-                        className="form-input"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-8 px-4 py-3">
-                  <button type="submit" className="form-button w-auto">
-                    Guardar cambios
-                  </button>
-                </div>
+          <form onSubmit={sendData} className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Tu nombre de usuario
+                </label>
+                <input
+                  type="text"
+                  name="username"
+                  value={userForm.username}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-lg p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
               </div>
-            </form>
-          </section>
-        </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Tu email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={userForm.email}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-lg p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+              </div>
+
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Dirección
+                </label>
+                <input
+                  type="text"
+                  name="address"
+                  value={userForm.address}
+                  onChange={handleChange}
+                  className="w-full border border-gray-300 rounded-lg p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                />
+              </div>
+            </div>
+
+            <div className="pt-4 text-center">
+              <button
+                type="submit"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-8 py-3 rounded-full transition duration-300"
+              >
+                Guardar cambios
+              </button>
+            </div>
+          </form>
+        </section>
       </div>
-    </>
+    </main>
   );
 }

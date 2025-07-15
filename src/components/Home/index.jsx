@@ -48,7 +48,7 @@ const Home = () => {
           {/* Párrafo descriptivo */}
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed z-10 relative">
             Descubre el sabor auténtico de Chile en cada mordida. Donde se crean
-            conexiones, se comparten risas y nacen memorias inolvidables. Porque acá creemos que
+            conexiones, se comparten risas y nacen memorias inolvidables. En Completísimo creemos que
             el cliente tiene la razón, y que siempre la ha tenido.
             <br /><br />
             Prueba nuestro delicioso menú; no es necesario correr, llevamos tu

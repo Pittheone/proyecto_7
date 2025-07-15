@@ -6,16 +6,17 @@ export default function Profile() {
   const { updateUser, currentUser } = userCtx;
 
   const [userForm, setUserForm] = useState({
-    username: "",
-    address: "",
+    name: "",
+    adress: "",
     email: ""
   });
 
   useEffect(() => {
     if (currentUser) {
+      console.log("este es current", currentUser)
       setUserForm({
-        username: currentUser.name || "",
-        address: currentUser.address || "",
+        name: currentUser.name || "",
+        adress: currentUser.adress || "",
         email: currentUser.email || ""
       });
     }
@@ -54,8 +55,8 @@ export default function Profile() {
                 </label>
                 <input
                   type="text"
-                  name="username"
-                  value={userForm.username}
+                  name="name"
+                  value={userForm.name}
                   onChange={handleChange}
                   className="w-full border border-gray-300 rounded-lg p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
                 />
@@ -80,8 +81,8 @@ export default function Profile() {
                 </label>
                 <input
                   type="text"
-                  name="address"
-                  value={userForm.address}
+                  name="adress"
+                  value={userForm.adress}
                   onChange={handleChange}
                   className="w-full border border-gray-300 rounded-lg p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
                 />

@@ -60,7 +60,8 @@ const UserState = (props) => {
       const res = await axiosClient.get("/users/verifytoken", {
         withCredentials: true,
       });
-      const userData = res.data.user;
+      const userData = res.data;
+      console.log("este es userData", userData)
       dispatch({
         type: "GET_USER_DATA",
         payload: userData,
@@ -84,20 +85,20 @@ const UserState = (props) => {
     }
   };
 
-  const getUserByID = async () => {
-    try {
-      const response = await fetch("/users/id", {
-        method: "GET",
-        credentials: "include",
-      } )
-      const data = await response.json()
-      return data
+  // const getUserByID = async () => {
+  //   try {
+  //     const response = await fetch("lochalhost:3000/api/users/id", {
+  //       method: "GET",
+  //       credentials: "include",
+  //     } )
+  //     const data = await response.json()
+  //     return data
 
-    } catch (error) {
-      console.log(error)
+  //   } catch (error) {
+  //     console.log(error)
       
-    }
-  }
+  //   }
+  // }
 
   const editCart = async (data) => {
     try {

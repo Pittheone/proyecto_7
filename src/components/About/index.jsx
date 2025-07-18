@@ -75,7 +75,7 @@ const AboutUs = () => {
             Te damos la bienvenida a un espacio moderno, acogedor y lleno de energía positiva.
             Nuestro local fue diseñado para que disfrutes cada bocado en un ambiente limpio, cómodo y rodeado de buena vibra.
             <br /><br />
-            Ya sea que vengas solo, con amigos o en familia, aquí siempre encontrarás una sonrisa y un completo saludable esperándote.
+            Ya sea que vengas solo, con amigos o en familia, aquí siempre encontrarás una sonrisa y un completo saludable esperándote. Visítamos en av Vickuña Maquena 555.
           </p>
         </div>
       </section>

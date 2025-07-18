@@ -1,14 +1,11 @@
-// import { useState, useEffect, useContext, Fragment } from "react";
-
-// import UserContext from "../../contexts/user/UserContext";
-import { useContext, useEffect, useState, Fragment } from "react";
+import { useContext, useEffect, useState } from "react";
 import UserContext from "../../contexts/user/UserContext";
 import { Link } from "react-router-dom";
 
 
 export default function Header(){
   const {
-    // currentUser,
+    currentUser,
     cart,
     authStatus,
     verifyUser,
@@ -21,10 +18,14 @@ export default function Header(){
 
   useEffect(() => {
     setLoading(true);
-    verifyUser(),
+    verifyUser();
     getCart();
     setLoading(false);
   }, [] );
+
+  useEffect(() => {
+    getCart() 
+  }, [currentUser])
 
   useEffect(() => {
     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);

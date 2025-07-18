@@ -1,7 +1,8 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import axiosClient from "../../config/axios";
-import UserContext from "../user/UserContext";
-import userReducer from "./UserRedurcer"; //no debería ser como el de arriba?
+import UserContext from "./UserContext";
+import UserReducer from "./UserRedurcer"; 
+
 
 const UserState = (props) => {
   const initialState = {
@@ -18,7 +19,7 @@ const UserState = (props) => {
 
 
 //función que obtenga datos por ID
-  const [globalState, dispatch] = useReducer(userReducer, initialState);
+  const [globalState, dispatch] = useReducer(UserReducer, initialState);
 
   const registerUser = async (form) => {
     try {
@@ -30,6 +31,7 @@ const UserState = (props) => {
       });
       return true;
     } catch (error) {
+      console.log(error)
       return false;
     }
   };
@@ -60,11 +62,11 @@ const UserState = (props) => {
       const res = await axiosClient.get("/users/verifytoken", {
         withCredentials: true,
       });
-      const userData = res.data;
-      console.log("este es userData", userData)
+      // const userData = res.data.user;
+      console.log("este es userData", res.data.user)
       dispatch({
         type: "GET_USER_DATA",
-        payload: userData,
+        payload: res.data.user,
       });
     } catch (error) {
       console.log(error);

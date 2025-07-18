@@ -3,7 +3,8 @@ import UserContext from "../../contexts/user/UserContext";
 
 export default function Profile() {
   const userCtx = useContext(UserContext);
-  const { updateUser, currentUser } = userCtx;
+  const { updateUser } = userCtx;
+  const { name, adress, email } = userCtx.currentUser;
 
   const [userForm, setUserForm] = useState({
     name: "",
@@ -12,15 +13,16 @@ export default function Profile() {
   });
 
   useEffect(() => {
-    if (currentUser) {
-      console.log("este es current", currentUser)
-      setUserForm({
-        name: currentUser.name || "",
-        adress: currentUser.adress || "",
-        email: currentUser.email || ""
-      });
-    }
-  }, [currentUser]);
+    const updateData = () => {
+      return setUserForm({
+        ...userForm,
+        name, adress, email
+      })
+    };
+
+    updateData();
+  }, []);
+  
 
   const handleChange = (event) => {
     setUserForm({

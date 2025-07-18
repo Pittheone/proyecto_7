@@ -7,8 +7,8 @@ import SingleCompleto from "./components/Completo/Single"; //7
 import Register from "./components/Auth/Register"; //8
 import Login from "./components/Auth/Login"; //9
 import UserState from "./contexts/user/UserState"; //2
-import AuthRoute from "./routes/Auth"; //16
-import PrivateRoute from "./routes/Private"; //15
+// import AuthRoute from "./routes/Auth"; //16
+// import PrivateRoute from "./routes/Private"; //15
 import Profile from "./components/Profile/index"; // 10 //import Profile from "./components/Profile/index"
 import SucessPage from "./components/Sucess/index"; //12 //import SuccessPage from "./components/Success/index";
 import CancelPage from "./components/Cancel/index"; //13
@@ -44,7 +44,6 @@ const Router = () => {
               <Route path='pago-exitoso' element={<SucessPage />} />
               <Route path='pago-cancelado' element={<CancelPage />} />
               <Route path="about" element={<About />} />
-              {/* <Route path="/index" element={<Home />} />       */}
             </Route>
           </Routes>
         </BrowserRouter>

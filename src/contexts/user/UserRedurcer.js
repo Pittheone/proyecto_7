@@ -41,21 +41,6 @@ const UserReducer = (globalState, action) => {
 
     default:
       globalState;
-    // case "LOGIN_EXITOSO":
-    //     localStorage.setItem("token", action.payload);
-    //     return {
-    //         ...globalState,
-    //         authStatus: true
-    //     };
-    // case "LOGOUT_USUARIO":
-    //     localStorage.removeItem("token");
-    //     return {
-    //         ...globalState,
-    //         currentUser: {},
-    //         authStatus: false
-    //     };
-    // default:
-    //     return globalState;
   }
 };
 

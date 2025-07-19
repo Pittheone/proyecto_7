@@ -18,7 +18,7 @@ const UserState = (props) => {
   };
 
 
-//función que obtenga datos por ID
+
   const [globalState, dispatch] = useReducer(UserReducer, initialState);
 
   const registerUser = async (form) => {
@@ -62,7 +62,7 @@ const UserState = (props) => {
       const res = await axiosClient.get("/users/verifytoken", {
         withCredentials: true,
       });
-      // const userData = res.data.user;
+
       console.log("este es userData", res.data.user)
       dispatch({
         type: "GET_USER_DATA",
@@ -86,21 +86,6 @@ const UserState = (props) => {
       console.log("Error cerrando sesion", error);
     }
   };
-
-  // const getUserByID = async () => {
-  //   try {
-  //     const response = await fetch("lochalhost:3000/api/users/id", {
-  //       method: "GET",
-  //       credentials: "include",
-  //     } )
-  //     const data = await response.json()
-  //     return data
-
-  //   } catch (error) {
-  //     console.log(error)
-      
-  //   }
-  // }
 
   const editCart = async (data) => {
     try {
@@ -171,7 +156,6 @@ type: "CHANGE_STATUS_LOADING",
         getCart,
         getCheckoutSession,
         setLoading,
-        // getUserByID
       }}
     >
       {props.children}

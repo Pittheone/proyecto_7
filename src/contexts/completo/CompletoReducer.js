@@ -11,7 +11,7 @@ const CompletoReducer = (globalState, action) => {
                     currentCompleto: action.payload,
                 }
         default:
-            return globalState; //solo lo que está en base de datos
+            return globalState; 
     }
 }
 

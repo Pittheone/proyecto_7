@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react"
 import CompletoContext from "../../../contexts/completo/CompletoContext"
 import { Link } from "react-router-dom"
 
-//it looks amazing
+
 
 const CompletoList = () => {
   const ctx = useContext(CompletoContext)

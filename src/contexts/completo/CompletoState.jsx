@@ -39,7 +39,7 @@ const setCurrentCompleto = (completoData) => {
   });
 }
 
-//return lo que va a mostrar/renderizar en pantalla
+
   return (
     <CompletoContext.Provider
       value={{

@@ -66,7 +66,7 @@ const SingleCompleto = () => {
   return (
     <main className="min-h-screen bg-[#fff7f2] text-gray-800 px-6 py-16">
       <div className="max-w-5xl mx-auto grid lg:grid-cols-2 gap-12 items-start">
-        {/* Card de información */}
+
         <section className="relative w-full max-w-xl rounded-[2rem] overflow-hidden bg-orange-100 shadow-xl p-6 space-y-6">
           <h1 className="text-5xl font-extrabold tracking-tight text-orange-600">
             {name}
@@ -115,7 +115,7 @@ const SingleCompleto = () => {
             </form>
           )}
 
-          {/* Botón volver al menú */}
+
           <div className="mt-6">
             <Link
               to="/completos"
@@ -134,7 +134,7 @@ const SingleCompleto = () => {
           )}
         </section>
 
-        {/* Imagen */}
+
         <figure>
           <img
             src={img}

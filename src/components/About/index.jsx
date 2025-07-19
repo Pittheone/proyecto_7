@@ -10,7 +10,6 @@ const AboutUs = () => {
   return (
     <main className="min-h-screen px-4 sm:px-6 py-16 bg-[#fff7f2] text-gray-800 space-y-32">
 
-      {/* Sección 1: Nuestra historia */}
       <section className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="lg:w-1/2 text-left">
           <h2 className="text-5xl sm:text-6xl font-bold italic leading-tight mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-transparent bg-clip-text">
@@ -34,7 +33,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Sección 2: El problema */}
       <section className="max-w-6xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-12">
         <div className="lg:w-1/2 text-left">
           <h2 className="text-5xl sm:text-6xl font-bold italic leading-tight mb-6 bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-transparent bg-clip-text">
@@ -57,7 +55,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Sección 3: Nuestro lugar */}
       <section className="max-w-6xl mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="lg:w-1/2">
           <img
@@ -80,7 +77,6 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Sección 4: Reviews */}
       <section className="bg-[#fff7f2] py-20">
         <div className="max-w-6xl mx-auto text-center px-4 space-y-8">
           <div>
@@ -93,7 +89,7 @@ const AboutUs = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12">
-            {/* Review 1 */}
+
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -110,7 +106,7 @@ const AboutUs = () => {
               <p className="font-bold">JUAN</p>
             </motion.div>
 
-            {/* Review 2 */}
+
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -127,7 +123,7 @@ const AboutUs = () => {
               <p className="font-bold">CAMILA</p>
             </motion.div>
 
-            {/* Review 3 */}
+
             <motion.div
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}

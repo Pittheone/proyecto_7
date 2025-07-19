@@ -2,17 +2,13 @@ import { useContext, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import UserContext from "../contexts/user/UserContext";
 
-export default function AuthRoute({ component: component }) {
+export default function AuthRoute({ component: Component }) {
 const userCtx = useContext(UserContext);
 const { authStatus, verifyUser } = userCtx;
 
 useEffect(() => {
-    const verifyToken = async () => {
-        await verifyUser();
-    };
-    verifyToken();
-    
-}, [authStatus, verifyUser]);
+    verifyUser();
+}, [authStatus]);
 
 return <>{authStatus ? <Navigate replace to="/" /> : <Component />}</>;
 }

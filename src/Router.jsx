@@ -7,13 +7,14 @@ import SingleCompleto from "./components/Completo/Single"; //7
 import Register from "./components/Auth/Register"; //8
 import Login from "./components/Auth/Login"; //9
 import UserState from "./contexts/user/UserState"; //2
-// import AuthRoute from "./routes/Auth"; //16
-// import PrivateRoute from "./routes/Private"; //15
+import AuthRoute from "./routes/Auth"; //16
+import PrivateRoute from "./routes/Private"; //15
 import Profile from "./components/Profile/index"; // 10 //import Profile from "./components/Profile/index"
 import SucessPage from "./components/Sucess/index"; //12 //import SuccessPage from "./components/Success/index";
 import CancelPage from "./components/Cancel/index"; //13
 import Checkout from "./components/Checkout/index"; //11
 import About from "./components/About";
+
 
 
 const Router = () => {
@@ -28,11 +29,11 @@ const Router = () => {
               <Route path="registro" element={<Register />} />
               <Route 
               path="iniciar-sesion" 
-              element={<Login />}
+              element={ <AuthRoute component={Login} /> }
               />
               <Route
               path="perfil"
-              element={<Profile/>} 
+              element={ <PrivateRoute component={Profile} /> }
               />
               <Route
               path="carrito"

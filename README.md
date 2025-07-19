@@ -31,6 +31,7 @@ https://proyecto-6-bc8s.onrender.com
   - TailwindCSS
   - React Router
   - Context API para manejo de estado global
+  -Stripe
 
 - **Backend**:
   - Node.js + Express (con despliegue en Render.com)

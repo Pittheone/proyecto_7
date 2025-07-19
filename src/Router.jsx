@@ -26,25 +26,25 @@ const Router = () => {
           <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Home />} />  
-              <Route path="registro" element={<Register />} />
+              <Route path="/registro" element={<Register />} />
               <Route 
-              path="iniciar-sesion" 
+              path="/iniciar-sesion" 
               element={ <AuthRoute component={Login} /> }
               />
               <Route
-              path="perfil"
+              path="/perfil"
               element={ <PrivateRoute component={Profile} /> }
               />
               <Route
-              path="carrito"
+              path="/carrito"
               element={<Checkout/>}
               />
     
-              <Route path="completos" element={<CompletoList />} /> 
-              <Route path="completos/:slug" element={<SingleCompleto/>} />
-              <Route path='pago-exitoso' element={<SucessPage />} />
-              <Route path='pago-cancelado' element={<CancelPage />} />
-              <Route path="about" element={<About />} />
+              <Route path="/completos" element={<CompletoList />} /> 
+              <Route path="/completos/:slug" element={<SingleCompleto/>} />
+              <Route path='/pago-exitoso' element={<SucessPage />} />
+              <Route path='/pago-cancelado' element={<CancelPage />} />
+              <Route path="/about" element={<About />} />
             </Route>
           </Routes>
         </BrowserRouter>
